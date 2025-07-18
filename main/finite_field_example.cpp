@@ -5,11 +5,11 @@
 using Field = FiniteField::FieldElement;
 
 int main() {
-    FiniteField field(17);  
+    FiniteField GF(17);  
 
     std::vector<Field> elements;
     for (int i = 0; i < 17; ++i) {
-        elements.emplace_back(i, &field);  
+        elements.push_back(GF.element(i));  
     }
 
     std::cout << "Finite Field Elements (mod 17):\n";
@@ -28,8 +28,9 @@ int main() {
         std::cout << "Element: " << elem << ", Additive Inverse: " << -elem << std::endl;
     }
 
-    std::cout << "Testing field operations:\n";
-    Field a(5, &field), b(3, &field);
+    std::cout << "Testing GF operations:\n";
+    Field a = GF.element(5);
+    Field b = GF.element(3);
     std::cout << "a + b = " << (a + b) << std::endl;
     std::cout << "a - b = " << (a - b) << std::endl;
     std::cout << "a * b = " << (a * b) << std::endl;

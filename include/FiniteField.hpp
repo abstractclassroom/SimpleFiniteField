@@ -45,6 +45,8 @@ public:
         friend std::ostream& operator<<(std::ostream& os, const FieldElement& el);
     };
 
+    FieldElement element(const Integer& v);
+    FieldElement element(const int64_t v);
     const Integer& getPrime() const;
 
 private:

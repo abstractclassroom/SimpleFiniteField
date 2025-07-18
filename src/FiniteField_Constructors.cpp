@@ -5,6 +5,7 @@
 
 FiniteField::FiniteField(const Integer& p) : prime(p) {}
 
+
 FiniteField::FieldElement::FieldElement(const Integer& v, const FiniteField* f)
     : value(v % f->getPrime()), field(f) {
     if (value < 0)

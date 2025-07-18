@@ -8,7 +8,7 @@ class FiniteFieldIntegerTest : public ::testing::Test {
 protected:
     FiniteField field{Integer(17)};  
 
-    Field val(int64_t x) { return Field(Integer(x), &field); }
+    Field val(int64_t x) { return field.element(Integer(x)); }
 };
 
 TEST_F(FiniteFieldIntegerTest, ConstructorNormalization) {

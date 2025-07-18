@@ -9,9 +9,13 @@ protected:
     FiniteField field{17}; 
 
     Field val(int64_t x) {
-        return Field(x, &field);
+        return field.element(x);
     }
 };
+
+TEST_F(FiniteFieldTest, ShortHand) {
+
+}
 
 TEST_F(FiniteFieldTest, ConstructorNormalization) {
     EXPECT_EQ(val(17).value, 0);
