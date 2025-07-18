@@ -5,7 +5,7 @@
 using Field = FiniteField::FieldElement;
 
 int main() {
-    FiniteField GF(17);  
+    FiniteField GF("17");  // Create a finite field GF(17)
 
     std::vector<Field> elements;
     for (int i = 0; i < 17; ++i) {

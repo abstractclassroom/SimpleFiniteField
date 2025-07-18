@@ -4,6 +4,9 @@
 
 
 FiniteField::FiniteField(const Integer& p) : prime(p) {}
+FiniteField::FiniteField(const std::string& p) : prime(Integer(p)) {}
+
+
 
 
 FiniteField::FieldElement::FieldElement(const Integer& v, const FiniteField* f)

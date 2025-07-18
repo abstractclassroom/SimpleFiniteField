@@ -10,6 +10,8 @@
 class FiniteField {
 public:
     explicit FiniteField(const Integer& prime);
+    // explicit FiniteField(int64_t prime);
+    explicit FiniteField(const std::string& prime);
 
     class FieldElement {
     public:
