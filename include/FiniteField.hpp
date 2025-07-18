@@ -16,7 +16,7 @@ public:
         Integer value;
         const FiniteField* field;
 
-        FieldElement(const Integer& v, const FiniteField* field);  // ✅ MUST BE HERE
+        FieldElement(const Integer& v, const FiniteField* field);  
         FieldElement(int64_t v, const FiniteField* field);   
 
         // Arithmetic operators
@@ -43,6 +43,8 @@ public:
 
         // Output stream
         friend std::ostream& operator<<(std::ostream& os, const FieldElement& el);
+
+        const Integer& getPrime() const;
     };
 
     FieldElement element(const Integer& v);

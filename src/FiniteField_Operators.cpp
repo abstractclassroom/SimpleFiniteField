@@ -60,6 +60,4 @@ std::ostream& operator<<(std::ostream& os, const FiniteField::FieldElement& el) 
     return os << el.value;
 }
 
-const Integer& FiniteField::getPrime() const {
-    return prime;
-}
+

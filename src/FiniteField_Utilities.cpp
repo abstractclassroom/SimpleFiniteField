@@ -15,3 +15,10 @@ FiniteField::FieldElement FiniteField::element(const int64_t v) {
 }
 
 
+const Integer& FiniteField::getPrime() const {
+    return prime;
+}
+
+// const Integer& FiniteField::FieldElement::getPrime() const {
+//     return this->getPrime();
+// }
