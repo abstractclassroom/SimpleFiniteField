@@ -1,23 +1,23 @@
 #ifndef FINITE_FIELD_HPP
 #define FINITE_FIELD_HPP
 
-#include "Integer.hpp"  
-
+#include "Integer.hpp"
 #include <cstdint>
 #include <stdexcept>
 #include <iostream>
+#include <memory>
 
 class FiniteField {
 public:
-    static void setPrime(const Integer& p);
+    explicit FiniteField(const Integer& prime);
 
     class FieldElement {
     public:
         Integer value;
+        const FiniteField* field;
 
-        // Constructor
-        FieldElement(int64_t v = 0); // convenience constructor
-        FieldElement(const Integer& v);
+        FieldElement(const Integer& v, const FiniteField* field);  // ✅ MUST BE HERE
+        FieldElement(int64_t v, const FiniteField* field);   
 
         // Arithmetic operators
         FieldElement operator+(const FieldElement& other) const;
@@ -43,14 +43,12 @@ public:
 
         // Output stream
         friend std::ostream& operator<<(std::ostream& os, const FieldElement& el);
-
-    private:
-        static uint64_t modInverse(uint64_t a, uint64_t p);
     };
 
-private:
-    static Integer prime;
-};
+    const Integer& getPrime() const;
 
+private:
+    Integer prime;
+};
 
 #endif // FINITE_FIELD_HPP

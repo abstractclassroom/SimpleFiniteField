@@ -1,18 +1,20 @@
 #include "FiniteField.hpp"
 
+
+
 FiniteField::FieldElement FiniteField::FieldElement::operator+(const FieldElement& other) const {
-    Integer result = (value + other.value) % prime;
-    return FieldElement(result < 0 ? result + prime : result);
+    Integer result = (value + other.value) % field->getPrime();
+    return FieldElement(result < 0 ? result + field->getPrime() : result, field);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator-(const FieldElement& other) const {
-    Integer result = (value - other.value) % prime;
-    return FieldElement(result < 0 ? result + prime : result);
+    Integer result = (value - other.value) % field->getPrime();
+    return FieldElement(result < 0 ? result + field->getPrime() : result, field);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator*(const FieldElement& other) const {
-    Integer result = (value * other.value) % prime;
-    return FieldElement(result < 0 ? result + prime : result);
+    Integer result = (value * other.value) % field->getPrime();
+    return FieldElement(result < 0 ? result + field->getPrime() : result, field);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator/(const FieldElement& other) const {
@@ -20,20 +22,20 @@ FiniteField::FieldElement FiniteField::FieldElement::operator/(const FieldElemen
 }
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator+=(const FieldElement& other) {
-    value = (value + other.value) % prime;
-    if (value < 0) value += prime;
+    value = (value + other.value) % field->getPrime();
+    if (value < 0) value += field->getPrime();
     return *this;
 }
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator-=(const FieldElement& other) {
-    value = (value - other.value) % prime;
-    if (value < 0) value += prime;
+    value = (value - other.value) % field->getPrime();
+    if (value < 0) value += field->getPrime();
     return *this;
 }
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator*=(const FieldElement& other) {
-    value = (value * other.value) % prime;
-    if (value < 0) value += prime;
+    value = (value * other.value) % field->getPrime();
+    if (value < 0) value += field->getPrime();
     return *this;
 }
 
@@ -43,17 +45,21 @@ FiniteField::FieldElement& FiniteField::FieldElement::operator/=(const FieldElem
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator-() const {
-    return FieldElement((prime - value) % prime);
+    return FieldElement((field->getPrime() - value) % field->getPrime(), field);
 }
 
 bool FiniteField::FieldElement::operator==(const FieldElement& other) const {
-    return value == other.value;
+    return value == other.value && field == other.field;
 }
 
 bool FiniteField::FieldElement::operator!=(const FieldElement& other) const {
-    return value != other.value;
+    return !(*this == other);
 }
 
 std::ostream& operator<<(std::ostream& os, const FiniteField::FieldElement& el) {
     return os << el.value;
+}
+
+const Integer& FiniteField::getPrime() const {
+    return prime;
 }

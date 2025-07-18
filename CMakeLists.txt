@@ -49,7 +49,7 @@ target_include_directories(finite_field
 
 # --- Build example ---
 add_executable(finite_field_example
-  src/finite_field_example.cpp
+  main/finite_field_example.cpp
 )
 target_link_libraries(finite_field_example
   finite_field

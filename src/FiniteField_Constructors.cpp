@@ -1,12 +1,15 @@
 #include "FiniteField.hpp"
+#include "Integer.hpp"
+#include <cstdint>
 
-Integer FiniteField::prime = Integer(2);  // Default prime
 
-FiniteField::FieldElement::FieldElement(const Integer& v) {
-    value = v % prime;
+FiniteField::FiniteField(const Integer& p) : prime(p) {}
+
+FiniteField::FieldElement::FieldElement(const Integer& v, const FiniteField* f)
+    : value(v % f->getPrime()), field(f) {
     if (value < 0)
-        value += prime;
+        value += f->getPrime();
 }
 
-FiniteField::FieldElement::FieldElement(int64_t v)
-    : FiniteField::FieldElement(Integer(v)) {}
+FiniteField::FieldElement::FieldElement(int64_t v, const FiniteField* f)
+    : FieldElement(Integer(v), f) {}
