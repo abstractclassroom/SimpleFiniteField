@@ -19,6 +19,6 @@ const Integer& FiniteField::getPrime() const {
     return prime;
 }
 
-// const Integer& FiniteField::FieldElement::getPrime() const {
-//     return this->getPrime();
-// }
+const Integer& FiniteField::FieldElement::getPrime() const {
+    return this->field->getPrime();
+}

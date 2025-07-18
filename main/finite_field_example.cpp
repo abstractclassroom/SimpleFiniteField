@@ -40,5 +40,8 @@ int main() {
     std::cout << "a *= b: " << (a *= b) << std::endl;
     std::cout << "a /= b: " << (a /= b) << std::endl;
 
+    std::cout << "The Prime of the field is: " << GF.getPrime() << std::endl;
+    std::cout << "The Prime associated with element 5 is: " << a.getPrime() << std::endl;
+
     return 0;
 }
