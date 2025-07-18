@@ -16,7 +16,6 @@ public:
         Integer value;
 
         // Constructor
-        FieldElement();  // default = 0
         FieldElement(int64_t v = 0); // convenience constructor
         FieldElement(const Integer& v);
 
