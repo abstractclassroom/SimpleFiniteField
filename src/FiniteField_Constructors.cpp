@@ -14,3 +14,6 @@ FiniteField::FieldElement::FieldElement(const Integer& v, const FiniteField* f)
 
 FiniteField::FieldElement::FieldElement(int64_t v, const FiniteField* f)
     : FieldElement(Integer(v), f) {}
+
+FiniteField::FieldElement::FieldElement(const std::string& v, const FiniteField* f)
+    : FieldElement(Integer(v), f) {}

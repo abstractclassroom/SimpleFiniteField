@@ -16,6 +16,9 @@ public:
         Integer value;
         const FiniteField* field;
 
+        // Constructors
+        //constructor accepting string
+        FieldElement(const std::string& v, const FiniteField* field);
         FieldElement(const Integer& v, const FiniteField* field);  
         FieldElement(int64_t v, const FiniteField* field);   
 
@@ -49,6 +52,7 @@ public:
 
     FieldElement element(const Integer& v);
     FieldElement element(const int64_t v);
+    FieldElement element(const std::string& v);
     const Integer& getPrime() const;
 
 private:

@@ -12,6 +12,10 @@ int main() {
         elements.push_back(GF.element(i));  
     }
 
+    auto elem = GF.element("15");
+    if (elem == elements[15]) {
+        std::cout << "The two elements are equal." << std::endl;
+    }
     std::cout << "Finite Field Elements (mod 17):\n";
     std::cout << "Multiplicative Inverses:\n";
     for (const auto& elem : elements) {
