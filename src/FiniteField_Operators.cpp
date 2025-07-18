@@ -1,15 +1,18 @@
 #include "FiniteField.hpp"
 
 FiniteField::FieldElement FiniteField::FieldElement::operator+(const FieldElement& other) const {
-    return FieldElement((value + other.value));
+    Integer result = (value + other.value) % prime;
+    return FieldElement(result < 0 ? result + prime : result);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator-(const FieldElement& other) const {
-    return FieldElement(value - other.value);
+    Integer result = (value - other.value) % prime;
+    return FieldElement(result < 0 ? result + prime : result);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator*(const FieldElement& other) const {
-    return FieldElement((value * other.value));
+    Integer result = (value * other.value) % prime;
+    return FieldElement(result < 0 ? result + prime : result);
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator/(const FieldElement& other) const {
@@ -18,16 +21,19 @@ FiniteField::FieldElement FiniteField::FieldElement::operator/(const FieldElemen
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator+=(const FieldElement& other) {
     value = (value + other.value) % prime;
+    if (value < 0) value += prime;
     return *this;
 }
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator-=(const FieldElement& other) {
-    value = (value + prime - other.value) % prime;
+    value = (value - other.value) % prime;
+    if (value < 0) value += prime;
     return *this;
 }
 
 FiniteField::FieldElement& FiniteField::FieldElement::operator*=(const FieldElement& other) {
     value = (value * other.value) % prime;
+    if (value < 0) value += prime;
     return *this;
 }
 
@@ -37,7 +43,7 @@ FiniteField::FieldElement& FiniteField::FieldElement::operator/=(const FieldElem
 }
 
 FiniteField::FieldElement FiniteField::FieldElement::operator-() const {
-    return FieldElement((prime - value));
+    return FieldElement((prime - value) % prime);
 }
 
 bool FiniteField::FieldElement::operator==(const FieldElement& other) const {
@@ -45,7 +51,7 @@ bool FiniteField::FieldElement::operator==(const FieldElement& other) const {
 }
 
 bool FiniteField::FieldElement::operator!=(const FieldElement& other) const {
-    return !(*this == other);
+    return value != other.value;
 }
 
 std::ostream& operator<<(std::ostream& os, const FiniteField::FieldElement& el) {

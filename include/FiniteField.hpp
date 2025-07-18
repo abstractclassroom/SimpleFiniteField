@@ -1,20 +1,24 @@
 #ifndef FINITE_FIELD_HPP
 #define FINITE_FIELD_HPP
 
+#include "Integer.hpp"  
+
 #include <cstdint>
 #include <stdexcept>
 #include <iostream>
 
 class FiniteField {
 public:
-    static void setPrime(uint64_t p);
+    static void setPrime(const Integer& p);
 
     class FieldElement {
     public:
-        uint64_t value;
+        Integer value;
 
         // Constructor
-        FieldElement(int64_t v = 0);
+        FieldElement();  // default = 0
+        FieldElement(int64_t v = 0); // convenience constructor
+        FieldElement(const Integer& v);
 
         // Arithmetic operators
         FieldElement operator+(const FieldElement& other) const;
@@ -46,7 +50,8 @@ public:
     };
 
 private:
-    static uint64_t prime;
+    static Integer prime;
 };
+
 
 #endif // FINITE_FIELD_HPP

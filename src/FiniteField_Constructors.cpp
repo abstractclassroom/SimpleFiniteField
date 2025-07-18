@@ -1,11 +1,12 @@
 #include "FiniteField.hpp"
 
-uint64_t FiniteField::prime = 17;
+Integer FiniteField::prime = Integer(2);  // Default prime
 
-FiniteField::FieldElement::FieldElement(int64_t v) {
-    int64_t tmp = v;
-    if (tmp < 0) {
-        tmp += prime * ((-tmp / prime) + 1);
-    }
-    value = tmp % prime;
+FiniteField::FieldElement::FieldElement(const Integer& v) {
+    value = v % prime;
+    if (value < 0)
+        value += prime;
 }
+
+FiniteField::FieldElement::FieldElement(int64_t v)
+    : FiniteField::FieldElement(Integer(v)) {}

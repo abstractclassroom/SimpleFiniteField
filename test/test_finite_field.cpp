@@ -44,7 +44,7 @@ TEST_F(FiniteFieldTest, Inverse) {
         Field inv = x.inverse();
         EXPECT_EQ((x * inv).value, 1) << "Failed at i = " << i;
     }
-    EXPECT_THROW(Field(0).inverse(), std::runtime_error) << "Inverse of zero should throw";
+    EXPECT_THROW(Field(0).inverse(), std::invalid_argument) << "Inverse of zero should throw";
 }
 
 TEST_F(FiniteFieldTest, CompoundOperators) {
