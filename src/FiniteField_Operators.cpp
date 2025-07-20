@@ -49,7 +49,7 @@ FiniteField::FieldElement FiniteField::FieldElement::operator-() const {
 }
 
 bool FiniteField::FieldElement::operator==(const FieldElement& other) const {
-    return value == other.value && field == other.field;
+    return value == other.value && field->getPrime() == other.field->getPrime();
 }
 
 bool FiniteField::FieldElement::operator!=(const FieldElement& other) const {
