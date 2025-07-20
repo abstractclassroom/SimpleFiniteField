@@ -10,7 +10,7 @@ include(FetchContent)
 FetchContent_Declare(
   BigInteger
   GIT_REPOSITORY https://github.com/UofL-CSE-AutoGrader/BigInteger_Complete.git
-  GIT_TAG v1.1.0
+  GIT_TAG v2.0.0
   DOWNLOAD_EXTRACT_TIMESTAMP true
 )
 FetchContent_MakeAvailable(BigInteger)
